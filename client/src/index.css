@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  height: 100vh;
+}
+
+.ql-editor {
+  font-size: 1.05rem;
+}
+
+.post-content p {
+  margin-bottom: 0.5rem;
+}
+
+.post-content h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  margin: 1.5rem 0;
+}
+
+.post-content h2 {
+  font-size: 1.4rem;
+  font-family: sans-serif;
+  margin: 1.5rem 0;
+}
+
+.post-content a {
+  color: rgb(73, 149, 199);
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.dark .post-content a {
+  color: red;
+}
+
+
+/* Carousel */
+/* src/styles/Carousel.css */
+
+.carousel-container {
+  width: 100%;
+  max-width: 100%;
+  /* Adjust max-width as needed */
+  margin: auto;
+}
+
+.carousel-image-wrapper {
+  height: 300px;
+  /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.carousel-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+/* For Text Animation */
+/* @keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.moving-gradient {
+  background: linear-gradient(270deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  display: inline-block;
+  animation: gradientAnimation 10s ease infinite;
+} */
+
+
+
+
+/* Define keyframes for animations */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveBicycle {
+  0% {
+    transform: translateX(-100px);
+  }
+
+  100% {
+    transform: translateX(calc(100% + 100px));
+  }
+}
+
+/* Apply animations */
+.footer-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #333;
+  /* Dark background color */
+  color: #fff;
+  /* Light text color */
+  padding: 1rem 0;
+}
+
+.footer-title {
+  animation: float 3s ease-in-out infinite;
+}
+
+.footer-link,
+.footer-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-link:hover,
+.footer-icon:hover {
+  color: #ff4081;
+  /* Change color on hover */
+  transform: scale(1.1);
+}
+
+.bicycle-icon {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  width: 50px;
+  animation: moveBicycle 10s linear infinite;
+}

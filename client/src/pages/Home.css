@@ -1,0 +1,95 @@
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.moving-gradient {
+    background: linear-gradient(270deg, #ff7e5f, #ffffff, #eeeeee);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+/* Light Mode */
+.light-mode .moving-gradient {
+    color: #000;
+    /* Black text for light mode */
+}
+
+/* Dark Mode */
+.dark-mode .moving-gradient {
+    color: #fff;
+    /* White text for dark mode */
+}
+
+/* Define keyframes for animations */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes moveBicycle {
+    0% {
+        transform: translateX(-100px);
+    }
+
+    100% {
+        transform: translateX(calc(100% + 100px));
+    }
+}
+
+/* Apply animations */
+.footer-container {
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
+    /* Dark background color */
+    color: #fff;
+    /* Light text color */
+    padding: 1rem 0;
+}
+
+.footer-title {
+    animation: float 3s ease-in-out infinite;
+}
+
+.footer-link,
+.footer-icon {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-link:hover,
+.footer-icon:hover {
+    color: #ff4081;
+    /* Change color on hover */
+    transform: scale(1.1);
+}
+
+.bicycle-icon {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    width: 50px;
+    animation: moveBicycle 10s linear infinite;
+}
