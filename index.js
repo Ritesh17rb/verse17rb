@@ -13,29 +13,21 @@ dotenv.config();
 
 mongoose
   .connect(process.env.MONGO)
-  .then(() => {
-    console.log('MongoDb is connected');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+  .then(() => console.log('MongoDB is connected'))
+  .catch(err => console.log(err));
 
 const __dirname = path.resolve();
-
 const app = express();
 
-// Middleware to handle JSON bodies
+// Middleware
 app.use(express.json());
-// Middleware to handle cookies
 app.use(cookieParser());
-
-// Use CORS middleware with appropriate configuration
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173', // Use environment variable or fallback
-  credentials: true, // If you need to handle cookies
+  origin: '*', // Allow all origins
+  credentials: true,
 }));
 
-// Define your routes
+// Routes
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
@@ -44,8 +36,7 @@ app.use('/api/comment', commentRoutes);
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
+// The "catchall" handler for any request that doesn't match one above
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
@@ -54,15 +45,9 @@ app.get('*', (req, res) => {
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
-  res.status(statusCode).json({
-    success: false,
-    statusCode,
-    message,
-  });
+  res.status(statusCode).json({ success: false, statusCode, message });
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}!`);
-});
+// Start server
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server is running on port ${port}`));
